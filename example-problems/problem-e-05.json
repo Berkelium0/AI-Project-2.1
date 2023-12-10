@@ -1,0 +1,52 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Dana"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Noel"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Kim"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Sam"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Ahmed"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Rory"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Ira",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Noel"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Ahmed"
+        }
+    ]
+}

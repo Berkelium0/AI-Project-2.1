@@ -1,0 +1,49 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Kim"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Kim",
+            "object": "Brian"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Ira"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Sasha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Brian",
+            "object": "Omar"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Brian",
+            "object": "Samantha"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Calvin",
+            "person-2": "Brian",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Brian"
+        }
+    ]
+}

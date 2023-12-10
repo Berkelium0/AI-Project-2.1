@@ -1,0 +1,54 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Linda",
+            "object": "Youssef"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Kim",
+            "object": "Ava"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Linda"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Yufei"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Amanda"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Linda",
+            "person-2": "Youssef",
+            "result": "AB"
+        },
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Linda",
+            "person-2": "Kim",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Linda"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Kim"
+        }
+    ]
+}

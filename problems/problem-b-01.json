@@ -1,0 +1,37 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Kim",
+            "object": "Leslie"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Kim",
+            "object": "Muhammed"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Samantha",
+            "object": "Sasha"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Samantha",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Sasha"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Muhammed"
+        }
+    ]
+}

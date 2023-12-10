@@ -1,0 +1,63 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Linda",
+            "object": "Yufei"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Linda",
+            "object": "Maria"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Amanda"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Maria",
+            "object": "Agnieszka"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Linda",
+            "object": "Mehmet"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Maria",
+            "object": "Amanda"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Ahmed"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Agnieszka",
+            "person-2": "Ahmed",
+            "result": "B"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Yufei",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Mehmet"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Maria"
+        }
+    ]
+}

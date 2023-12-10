@@ -1,0 +1,59 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Kim",
+            "object": "Yufei"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Kim",
+            "object": "Sam"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Kim",
+            "object": "Noel"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Dana"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Agnieszka"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Kim",
+            "result-1": "A",
+            "person-2": "Noel",
+            "result-2": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Kim",
+            "result": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Agnieszka",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Sam"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Noel"
+        }
+    ]
+}

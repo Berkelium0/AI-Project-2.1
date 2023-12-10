@@ -1,0 +1,57 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Sasha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sasha",
+            "object": "Maria"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sasha",
+            "object": "Agnieszka"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Ava"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Ira"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sasha",
+            "object": "Daniel"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Daniel",
+            "result-1": "A",
+            "person-2": "Sasha",
+            "result-2": "A"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Maria",
+            "result-1": "A",
+            "person-2": "Agnieszka",
+            "result-2": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ava"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Youssef"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Maria"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Ava"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Ava"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Mehmet"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Maria",
+            "result": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Ava",
+            "result": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Youssef"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Rory"
+        }
+    ]
+}

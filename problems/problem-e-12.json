@@ -1,0 +1,88 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Brian"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Noel"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Prisha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Brian",
+            "object": "Linda"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Jordan"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Noel"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Rory"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Linda",
+            "object": "Kim"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Rory",
+            "person-2": "Linda",
+            "result": "AB"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Youssef",
+            "result-1": "A",
+            "person-2": "Jordan",
+            "result-2": "A"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Prisha",
+            "result-1": "AB",
+            "person-2": "Kim",
+            "result-2": "AB"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Youssef",
+            "result-1": "A",
+            "person-2": "Prisha",
+            "result-2": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Noel"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Youssef"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Jordan"
+        }
+    ]
+}

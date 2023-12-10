@@ -1,0 +1,65 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Lindsay",
+            "object": "Prisha"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Lindsay",
+            "object": "Jordan"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Mehmet"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Youssef"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Mehmet",
+            "object": "Kim"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Ahmed"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Jordan",
+            "result-1": "A",
+            "person-2": "Ahmed",
+            "result-2": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Prisha",
+            "result": "O"
+        },
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Mehmet",
+            "person-2": "Jordan",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Jordan"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Lindsay"
+        }
+    ]
+}

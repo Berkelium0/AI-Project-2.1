@@ -1,0 +1,53 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Nora",
+            "object": "Yufei"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ayansh",
+            "object": "Nora"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Youssef"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Sam"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Prisha"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Sam",
+            "result": "B"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Prisha",
+            "result": "B"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Yufei",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Nora"
+        }
+    ]
+}

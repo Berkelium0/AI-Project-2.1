@@ -1,0 +1,22 @@
+[
+    {
+        "type": "bloodtype",
+        "person": "Yufei",
+        "distribution": {
+            "O": 0.09,
+            "A": 0.2125,
+            "B": 0.4725,
+            "AB": 0.225
+        }
+    },
+    {
+        "type": "bloodtype",
+        "person": "Daniel",
+        "distribution": {
+            "O": 0.09,
+            "A": 0.2125,
+            "B": 0.4725,
+            "AB": 0.225
+        }
+    }
+]

@@ -1,0 +1,81 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Ahmed",
+            "object": "Samantha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ahmed",
+            "object": "Ira"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ahmed",
+            "object": "Samantha"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Ayansh"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ayansh",
+            "object": "Brian"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ahmed",
+            "object": "Agnieszka"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Lindsay"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Agnieszka",
+            "object": "Sasha"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Lindsay",
+            "person-2": "Samantha",
+            "result": "AB"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Sasha",
+            "result": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Agnieszka",
+            "result": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ahmed"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Ira"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Brian"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Samantha"
+        }
+    ]
+}

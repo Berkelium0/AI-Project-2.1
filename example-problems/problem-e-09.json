@@ -1,0 +1,39 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Mehmet",
+            "object": "Calvin"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Mehmet",
+            "object": "Ayansh"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Mehmet",
+            "object": "Ayansh"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ayansh",
+            "object": "Brian"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Calvin",
+            "person-2": "Mehmet",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ayansh"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+[
+    {
+        "type": "bloodtype",
+        "person": "Linda",
+        "distribution": {
+            "O": 0.057065546,
+            "A": 0.457462107,
+            "B": 0.204943161,
+            "AB": 0.280529185
+        }
+    },
+    {
+        "type": "bloodtype",
+        "person": "Muhammed",
+        "distribution": {
+            "O": 0.026202282,
+            "A": 0.44652719,
+            "B": 0.108034023,
+            "AB": 0.419236506
+        }
+    },
+    {
+        "type": "bloodtype",
+        "person": "Ahmed",
+        "distribution": {
+            "O": 0.023178941,
+            "A": 0.272987463,
+            "B": 0.262022816,
+            "AB": 0.441810779
+        }
+    }
+]

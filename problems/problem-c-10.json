@@ -1,0 +1,44 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Leslie"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Leslie"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Leslie"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Leslie"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Leslie",
+            "object": "Linda"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Linda",
+            "person-2": "Leslie",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Linda"
+        }
+    ]
+}

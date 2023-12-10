@@ -1,0 +1,73 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Sasha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Mehmet"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sasha",
+            "object": "Youssef"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Zeinab"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Lindsay"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Zeinab",
+            "object": "Sam"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Youssef",
+            "object": "Leslie"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Mehmet",
+            "object": "Ira"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Sam",
+            "result": "A"
+        },
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Mehmet",
+            "person-2": "Leslie",
+            "result": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Ira",
+            "result": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Lindsay"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Leslie"
+        }
+    ]
+}

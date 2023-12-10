@@ -1,0 +1,40 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Dana"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Rory"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Muhammed"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Ava"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Ira",
+            "result-1": "O",
+            "person-2": "Rory",
+            "result-2": "O"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ira"
+        }
+    ]
+}

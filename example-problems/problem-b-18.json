@@ -1,0 +1,33 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Jordan",
+            "object": "Sasha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Jordan",
+            "object": "Sasha"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Jordan",
+            "object": "Amanda"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Sasha",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Amanda"
+        }
+    ]
+}

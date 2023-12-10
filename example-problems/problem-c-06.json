@@ -1,0 +1,38 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Kim"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Kim"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Kim"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Linda"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Kim",
+            "result": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Linda"
+        }
+    ]
+}

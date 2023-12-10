@@ -1,0 +1,72 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Maria",
+            "object": "Zeinab"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Zeinab",
+            "object": "Dana"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Maria",
+            "object": "Ava"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Dana",
+            "object": "Jordan"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Zeinab",
+            "object": "Kim"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sasha",
+            "object": "Ava"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Zeinab",
+            "object": "Muhammed"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Sasha",
+            "result-1": "A",
+            "person-2": "Maria",
+            "result-2": "O"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Dana",
+            "result-1": "A",
+            "person-2": "Zeinab",
+            "result-2": "A"
+        },
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Ava",
+            "person-2": "Muhammed",
+            "result": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Muhammed"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Jordan"
+        }
+    ]
+}

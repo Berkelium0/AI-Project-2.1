@@ -1,0 +1,82 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Omar"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Sam"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Sam"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sam",
+            "object": "Leslie"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Sam",
+            "object": "Ayansh"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ayansh",
+            "object": "Lindsay"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ayansh",
+            "object": "Kim"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Lindsay",
+            "object": "Agnieszka"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Lindsay",
+            "person-2": "Kim",
+            "result": "B"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Noel",
+            "result-1": "O",
+            "person-2": "Omar",
+            "result-2": "O"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Agnieszka",
+            "result": "AB"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Omar",
+            "result-1": "O",
+            "person-2": "Sam",
+            "result-2": "O"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Omar"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Leslie"
+        }
+    ]
+}

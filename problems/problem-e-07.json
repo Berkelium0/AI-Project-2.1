@@ -1,0 +1,74 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Samantha",
+            "object": "Omar"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Samantha",
+            "object": "Muhammed"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Omar",
+            "object": "Ahmed"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Samantha",
+            "object": "Muhammed"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Yufei"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ahmed",
+            "object": "Rory"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Omar"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Omar",
+            "result-1": "A",
+            "person-2": "Yufei",
+            "result-2": "A"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Omar",
+            "result": "A"
+        },
+        {
+            "type": "mixed-bloodtype-test",
+            "person-1": "Samantha",
+            "person-2": "Muhammed",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Yufei"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Samantha"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Calvin"
+        }
+    ]
+}

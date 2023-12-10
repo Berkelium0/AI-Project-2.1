@@ -1,0 +1,22 @@
+[
+    {
+        "type": "bloodtype",
+        "person": "Zeinab",
+        "distribution": {
+            "O": 0.0,
+            "A": 0.039522881,
+            "B": 0.0,
+            "AB": 0.960477119
+        }
+    },
+    {
+        "type": "bloodtype",
+        "person": "Muhammed",
+        "distribution": {
+            "O": 0.0,
+            "A": 0.960477119,
+            "B": 0.0,
+            "AB": 0.039522881
+        }
+    }
+]

@@ -1,0 +1,76 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Nora"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Yufei"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Nora",
+            "object": "Zeinab"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Samantha"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Sasha"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Nora",
+            "object": "Brian"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Samantha",
+            "object": "Kim"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Brian",
+            "result": "AB"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Samantha",
+            "result": "B"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Zeinab",
+            "result": "B"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Sasha",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ava"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Nora"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Kim"
+        }
+    ]
+}

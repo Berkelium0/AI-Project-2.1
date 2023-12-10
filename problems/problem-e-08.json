@@ -1,0 +1,42 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Amanda"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Amanda"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Ayansh"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Prisha",
+            "object": "Rory"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Prisha",
+            "result": "AB"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Amanda"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Ayansh"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Muhammed",
+            "object": "Leslie"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Muhammed",
+            "object": "Daniel"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Leslie",
+            "object": "Kim"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Leslie",
+            "object": "Youssef"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Muhammed",
+            "result": "O"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Leslie"
+        }
+    ]
+}

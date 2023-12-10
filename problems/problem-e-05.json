@@ -1,0 +1,64 @@
+{
+    "family-tree": [
+        {
+            "relation": "father-of",
+            "subject": "Sasha",
+            "object": "Brian"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Brian",
+            "object": "Kim"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Kim",
+            "object": "Ahmed"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Calvin"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Noel",
+            "object": "Omar"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Kim",
+            "object": "Noel"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Brian",
+            "object": "Lindsay"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Noel",
+            "result": "A"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Calvin",
+            "result-1": "O",
+            "person-2": "Omar",
+            "result-2": "A"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Lindsay"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Omar"
+        }
+    ]
+}

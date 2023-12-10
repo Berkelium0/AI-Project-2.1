@@ -1,0 +1,40 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Yufei"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ava",
+            "object": "Leslie"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Lindsay",
+            "object": "Ahmed"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Lindsay",
+            "result": "A"
+        },
+        {
+            "type": "pair-bloodtype-test",
+            "person-1": "Yufei",
+            "result-1": "AB",
+            "person-2": "Ava",
+            "result-2": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Yufei"
+        }
+    ]
+}

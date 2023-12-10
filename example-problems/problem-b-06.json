@@ -1,0 +1,38 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Jordan"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Yufei"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Ira",
+            "object": "Noel"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Daniel"
+        }
+    ],
+    "country": "North Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Daniel",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ira"
+        }
+    ]
+}

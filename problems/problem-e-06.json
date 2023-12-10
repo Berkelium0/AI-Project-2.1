@@ -1,0 +1,80 @@
+{
+    "family-tree": [
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Rory"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Prisha"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Ira"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Calvin",
+            "object": "Amanda"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Ahmed"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Ahmed",
+            "object": "Youssef"
+        },
+        {
+            "relation": "mother-of",
+            "subject": "Yufei",
+            "object": "Amanda"
+        },
+        {
+            "relation": "father-of",
+            "subject": "Rory",
+            "object": "Ahmed"
+        }
+    ],
+    "country": "South Wumponia",
+    "test-results": [
+        {
+            "type": "bloodtype-test",
+            "person": "Prisha",
+            "result": "AB"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Youssef",
+            "result": "O"
+        },
+        {
+            "type": "bloodtype-test",
+            "person": "Calvin",
+            "result": "B"
+        }
+    ],
+    "queries": [
+        {
+            "type": "bloodtype",
+            "person": "Ahmed"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Yufei"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Ira"
+        },
+        {
+            "type": "bloodtype",
+            "person": "Amanda"
+        }
+    ]
+}
