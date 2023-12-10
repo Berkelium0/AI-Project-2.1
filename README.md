@@ -3,5 +3,5 @@ This is the repository for you solution. You can modify this README file any way
 
 **Topic:** WS2324 Assignment 2.1: Compute Blood Types
 
-
+https://www.youtube.com/watch?v=IWPxWWZnB9o
 
