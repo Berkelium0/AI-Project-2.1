@@ -6,3 +6,5 @@ This is the repository for you solution. You can modify this README file any way
 https://www.youtube.com/watch?v=IWPxWWZnB9o
 
 https://www.kaggle.com/code/dhruvdeshmukh/constructing-the-bayesian-networks-in-python#
+
+https://www.researchgate.net/publication/228683312_1_Bayesian_Logic_Programming_Theory_and_Tool
