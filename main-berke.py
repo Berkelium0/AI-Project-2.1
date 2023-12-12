@@ -5,31 +5,32 @@ from pgmpy.inference import VariableElimination
 import networkx as nx
 import matplotlib.pyplot as plt
 
-bayesNet = BayesianNetwork()
+family_tree = BayesianNetwork()
+
 # Create Nodes
-bayesNet.add_node("OX")
-bayesNet.add_node("OY")
-bayesNet.add_node("OBT")
-bayesNet.add_node("KX")
-bayesNet.add_node("KY")
-bayesNet.add_node("KBT")
-bayesNet.add_node("IX")
-bayesNet.add_node("IY")
-bayesNet.add_node("IBT")
+family_tree.add_node("OX")
+family_tree.add_node("OY")
+family_tree.add_node("OBT")
+family_tree.add_node("KX")
+family_tree.add_node("KY")
+family_tree.add_node("KBT")
+family_tree.add_node("IX")
+family_tree.add_node("IY")
+family_tree.add_node("IBT")
 
 # Set the Relations
-bayesNet.add_edge("OX", "KX")
-bayesNet.add_edge("OX", "OBT")
-bayesNet.add_edge("OY", "KX")
-bayesNet.add_edge("OY", "OBT")
+family_tree.add_edge("OX", "KX")
+family_tree.add_edge("OX", "OBT")
+family_tree.add_edge("OY", "KX")
+family_tree.add_edge("OY", "OBT")
 
-bayesNet.add_edge("IX", "KY")
-bayesNet.add_edge("IX", "IBT")
-bayesNet.add_edge("IY", "KY")
-bayesNet.add_edge("IY", "IBT")
+family_tree.add_edge("IX", "KY")
+family_tree.add_edge("IX", "IBT")
+family_tree.add_edge("IY", "KY")
+family_tree.add_edge("IY", "IBT")
 
-bayesNet.add_edge("KX", "KBT")
-bayesNet.add_edge("KY", "KBT")
+family_tree.add_edge("KX", "KBT")
+family_tree.add_edge("KY", "KBT")
 
 north_wumponia = [[.40],
                   [.35],
@@ -55,11 +56,12 @@ cpd_IX = TabularCPD("IX", 3, values=north_wumponia)
 cpd_IY = TabularCPD("IY", 3, values=north_wumponia)
 cpd_IBT = TabularCPD("IBT", 4, values=blood_type_chart, evidence=['IX', 'IY'], evidence_card=[3, 3])
 
-bayesNet.add_cpds(cpd_OX, cpd_OY, cpd_OBT, cpd_KX, cpd_KY, cpd_KBT, cpd_IX, cpd_IY, cpd_IBT)
+family_tree.add_cpds(cpd_OX, cpd_OY, cpd_OBT, cpd_KX, cpd_KY, cpd_KBT, cpd_IX, cpd_IY, cpd_IBT)
 
-bayesNet.check_model()
+family_tree.check_model()
 
-edges = bayesNet.edges()
+# Extract the edges from the Bayesian Network
+edges = family_tree.edges()
 
 # Create a directed graph using networkx
 G = nx.DiGraph()
