@@ -45,31 +45,71 @@ blood_type_chart = [[1, 0, 1, 0, 0, 0, 1, 0, 0],
                     [0, 1, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 1]]
 
-cpd_OX = TabularCPD("OX", 3, values=north_wumponia)
-cpd_OY = TabularCPD("OY", 3, values=north_wumponia)
-cpd_OBT = TabularCPD("OBT", 4, values=blood_type_chart, evidence=['OX', 'OY'], evidence_card=[3, 3])
+state_names = {
+    'OX': ['A', 'B', 'O'],
+    'OY': ['A', 'B', 'O'],
+    'OBT': ['A', 'B', 'AB', 'O'],
+    'KX': ['A', 'B', 'O'],
+    'KY': ['A', 'B', 'O'],
+    'KBT': ['A', 'B', 'AB', 'O'],
+    'IX': ['A', 'B', 'O'],
+    'IY': ['A', 'B', 'O'],
+    'IBT': ['A', 'B', 'AB', 'O']
+}
 
-cpd_KX = TabularCPD("KX", 3, values=subject_values, evidence=['OX', 'OY'], evidence_card=[3, 3])
-cpd_KY = TabularCPD("KY", 3, values=subject_values, evidence=['IX', 'IY'], evidence_card=[3, 3])
-cpd_KBT = TabularCPD("KBT", 4, values=blood_type_chart, evidence=['KX', 'KY'], evidence_card=[3, 3])
-cpd_IX = TabularCPD("IX", 3, values=north_wumponia)
-cpd_IY = TabularCPD("IY", 3, values=north_wumponia)
-cpd_IBT = TabularCPD("IBT", 4, values=blood_type_chart, evidence=['IX', 'IY'], evidence_card=[3, 3])
+cpd_OX = TabularCPD("OX", 3, values=north_wumponia, state_names=state_names)
+cpd_OY = TabularCPD("OY", 3, values=north_wumponia, state_names=state_names)
+cpd_OBT = TabularCPD("OBT", 4, values=blood_type_chart, evidence=['OX', 'OY'], evidence_card=[3, 3],
+                     state_names=state_names)
+cpd_KX = TabularCPD("KX", 3, values=subject_values, evidence=['OX', 'OY'], evidence_card=[3, 3], state_names=state_names)
+cpd_KY = TabularCPD("KY", 3, values=subject_values, evidence=['IX', 'IY'], evidence_card=[3, 3], state_names=state_names)
+cpd_KBT = TabularCPD("KBT", 4, values=blood_type_chart, evidence=['KX', 'KY'], evidence_card=[3, 3],
+                     state_names=state_names)
+cpd_IX = TabularCPD("IX", 3, values=north_wumponia, state_names=state_names)
+cpd_IY = TabularCPD("IY", 3, values=north_wumponia, state_names=state_names)
+cpd_IBT = TabularCPD("IBT", 4, values=blood_type_chart, evidence=['IX', 'IY'], evidence_card=[3, 3],
+                     state_names=state_names)
 
 family_tree.add_cpds(cpd_OX, cpd_OY, cpd_OBT, cpd_KX, cpd_KY, cpd_KBT, cpd_IX, cpd_IY, cpd_IBT)
 
 family_tree.check_model()
 
-# Extract the edges from the Bayesian Network
-edges = family_tree.edges()
-
-# Create a directed graph using networkx
+# # Extract the edges from the Bayesian Network
+# edges = family_tree.edges()
+#
+# # Create a directed graph using networkx
 G = nx.DiGraph()
-G.add_edges_from(edges)
+# G.add_edges_from(edges)
+#
+# # Plot the Bayesian network structure
+# plt.figure(figsize=(6, 6))
+# pos = nx.spring_layout(G)  # Choose a layout for visualization
+# nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_weight='bold', arrows=True)
+# plt.title("Bayesian Network Structure")
+# plt.show()
 
-# Plot the Bayesian network structure
-plt.figure(figsize=(6, 6))
+cpds = family_tree.get_cpds()
+
+# Display CPDs
+for cpd in cpds:
+    print("CPD for variable:", cpd.variable)
+    print(cpd)
+    print("\n")
+
+# Visualize Bayesian network structure
+plt.figure(figsize=(8, 6))
 pos = nx.spring_layout(G)  # Choose a layout for visualization
 nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_weight='bold', arrows=True)
 plt.title("Bayesian Network Structure")
 plt.show()
+
+# Inference - Guessing KBT when OBT = A
+infer = VariableElimination(family_tree)
+
+# Set evidence OBT = A
+evidence = {'IBT': 'O'}
+
+# Perform Inference for KBT
+result = infer.query(variables=['OBT'], evidence=evidence)
+
+print(result)
