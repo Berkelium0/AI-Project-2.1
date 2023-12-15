@@ -113,6 +113,31 @@ for x in d["family-tree"]:
     # family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
     #                      globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
+mixed_blood_test = [
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+]
+evidence = {}
+mbt_virtual_evidence = []
+for item in range(len(d["test-results"])):
+    if f'{d["test-results"][item]["type"]}' == 'bloodtype-test':
+        evidence.update({f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'})
+    elif f'{d["test-results"][item]["type"]}' == 'mixed-bloodtype-test':
+        family_tree.add_edge(f'{d["test-results"][item]["person-1"]}BT', f"MBT{item}")
+        family_tree.add_edge(f'{d["test-results"][item]["person-2"]}BT', f"MBT{item}")
+        family_tree.add_cpds(TabularCPD(variable=f"MBT{item}", variable_card=4, values=mixed_blood_test,
+                                        state_names={f"MBT{item}": ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-2"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     },
+                                        evidence=[f'{d["test-results"][item]["person-1"]}BT',
+                                                  f'{d["test-results"][item]["person-2"]}BT'],
+                                        evidence_card=[4, 4])
+                             )
+        evidence.update({f"MBT{item}": f'{d["test-results"][item]["result"]}'})
+
 family_tree.check_model()
 
 # Extract the edges from the Bayesian Network
@@ -133,30 +158,8 @@ plt.show()
 infer = VariableElimination(family_tree)
 
 # Set evidence
-
-mixed_blood_test = [
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-]
-evidence = {}
-mbt_virtual_evidence = []
-for item in range(len(d["test-results"])):
-    if f'{d["test-results"][item]["type"]}' == 'bloodtype-test':
-        evidence.update({f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'})
-    elif f'{d["test-results"][item]["type"]}' == 'mixed-bloodtype-test':
-        family_tree.add_edge(f'{d["test-results"][item]["person-1"]}', "MBT")
-        family_tree.add_edge(f'{d["test-results"][item]["person-2"]}', "MBT")
-        mbt_virtual_evidence.append(TabularCPD(variable="MBT", variable_card=4, values=mixed_blood_test,
-                                               state_names={"MBT":['A', 'B', 'AB', 'O']},
-                                               evidence=[f'{d["test-results"][item]["person-1"]}BT',
-                                                         f'{d["test-results"][item]["person-2"]}BT'],
-                                               evidence_card=[4, 4])
-                                    )
-# Perform Inference for the results
+    # Perform Inference for the results
 for item in range(len(d["queries"])):
-    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence,
-                         virtual_evidence=mbt_virtual_evidence)
-
+    print(family_tree.get_cpds("MBT1"))
+    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence)
     print(result)
