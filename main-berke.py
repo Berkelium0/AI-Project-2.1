@@ -5,10 +5,11 @@ from pgmpy.inference import VariableElimination
 import networkx as nx
 import matplotlib.pyplot as plt
 import json
+import json_numpy
 
 family_tree = BayesianNetwork()
 
-with open('example-problems/problem-c-00.json') as f:
+with open('example-problems/problem-c-02.json') as f:
     d = json.load(f)
 
 # Conditional Probability Tables
@@ -110,8 +111,6 @@ for x in d["family-tree"]:
             family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
                                  globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
-    # family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
-    #                      globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
 mixed_blood_test = [
     [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
@@ -160,6 +159,17 @@ infer = VariableElimination(family_tree)
 # Set evidence
     # Perform Inference for the results
 for item in range(len(d["queries"])):
-    print(family_tree.get_cpds("MBT1"))
     result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence)
     print(result)
+
+result_dict = result.values
+print(type(result_dict))
+# Import the json module
+# import json
+#
+# # Convert the dictionary to JSON format
+# result_json = json.dumps(result_dict)
+#
+# # Write the JSON result to a file
+# with open('pgmpy_result.json', 'w') as file:
+#     file.write(result_json)
