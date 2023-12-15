@@ -41,6 +41,6 @@ def compare_directories(dir1: Path, dir2: Path):
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 3:
-        print('Usage: python3 solution_check.py path/to/reference/solutions path/to/your/solutions')
+        print('Usage: python3 solution_check.py /Users/berke/PycharmProjects/team689/example-solutions /Users/berke/PycharmProjects/team689/example-our-solutions')
         sys.exit()
     compare_directories(Path(sys.argv[1]), Path(sys.argv[2]))
