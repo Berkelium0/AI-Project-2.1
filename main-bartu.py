@@ -6,11 +6,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import json
 
-from pgmpy.sampling.Sampling import State
-
 family_tree = BayesianNetwork()
 
-with open('example-problems/problem-d-04.json') as f:
+with open('example-problems/problem-e-11.json') as f:
     d = json.load(f)
 
 # Conditional Probability Tables
@@ -35,11 +33,6 @@ blood_type_chart = [[1, 0, 1, 0, 0, 0, 1, 0, 0],
                     [0, 0, 0, 0, 1, 1, 0, 1, 0],
                     [0, 1, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 1]]
-
-pair_blood_test = [[0.8, 0.2],
-                   [0.8, 0.2]]
-
-pair_blood_type_test_states = {}
 
 state_names = {}
 family_list = {}
@@ -120,16 +113,48 @@ for x in d["family-tree"]:
     # family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
     #                      globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
+mixed_blood_test = [
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+]
 
+pair_blood_test_1 = [
+    [1, 0.8, 0.8, 0.8, 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0],
+    [0, 0.2, 0, 0, 0.8, 1, 0.8, 0.8, 0, 0.2, 0, 0, 0, 0.2, 0, 0],
+    [0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.8, 0.8, 1, 0.8, 0, 0, 0.2, 0],
+    [0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.8, 0.8, 0.8, 1]
+]
+
+pair_blood_test_2 = [
+    [1, 0.2, 0.2, 0.2, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0],
+    [0, 0.8, 0, 0, 0.2, 1, 0.2, 0.2, 0, 0.8, 0, 0, 0, 0.8, 0, 0],
+    [0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.2, 0.2, 1, 0.2, 0, 0, 0.8, 0],
+    [0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.2, 0.2, 0.2, 1]
+]
+
+pair_blood_type_test_states = {}
 
 evidence = {}
+mbt_virtual_evidence = []
 for item in range(len(d["test-results"])):
     if f'{d["test-results"][item]["type"]}' == 'bloodtype-test':
         evidence.update({f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'})
-    if f'{d["test-results"][item]["type"]}' == 'pair-bloodtype-test':
-
-        pbt = 'PBT'
-        family_tree.add_node(pbt)
+    elif f'{d["test-results"][item]["type"]}' == 'mixed-bloodtype-test':
+        family_tree.add_edge(f'{d["test-results"][item]["person-1"]}BT', f"MBT{item}")
+        family_tree.add_edge(f'{d["test-results"][item]["person-2"]}BT', f"MBT{item}")
+        family_tree.add_cpds(TabularCPD(variable=f"MBT{item}", variable_card=4, values=mixed_blood_test,
+                                        state_names={f"MBT{item}": ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-2"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     },
+                                        evidence=[f'{d["test-results"][item]["person-1"]}BT',
+                                                  f'{d["test-results"][item]["person-2"]}BT'],
+                                        evidence_card=[4, 4])
+                             )
+        evidence.update({f"MBT{item}": f'{d["test-results"][item]["result"]}'})
+    elif f'{d["test-results"][item]["type"]}' == 'pair-bloodtype-test':
 
         person_1 = d["test-results"][item]["person-1"]
         result_1 = d["test-results"][item]["result-1"]
@@ -137,35 +162,32 @@ for item in range(len(d["test-results"])):
         person_2 = d["test-results"][item]["person-2"]
         result_2 = d["test-results"][item]["result-2"]
 
-        family_tree.add_edge(f'{person_1}BT', pbt)
-        family_tree.add_edge(f'{person_2}BT', pbt)
+        family_tree.add_edge(f'{person_1}BT', f'{item}_Result1')
+        family_tree.add_edge(f'{person_1}BT', f'{item}_Result2')
+        family_tree.add_edge(f'{person_2}BT', f'{item}_Result1')
+        family_tree.add_edge(f'{person_2}BT', f'{item}_Result2')
 
-        pair_blood_type_test_states.update(
-            {
-                f'{person_1}BT': [f'{result_1}', f'{result_2}'],
-                f'{person_2}BT': [f'{result_1}', f'{result_2}']
-            }
-        )
-        #
-        # globals()[f"cpd_{person_1}BT"] = TabularCPD(f"{person_1}BT", 2, values=pair_blood_test,
-        #                                             evidence=[f'{person_1}BT', f'{person_2}BT'],
-        #                                             evidence_card=[2, 1],
-        #                                             state_names=pair_blood_type_test_states)
-        # globals()[f"cpd_{person_2}BT"] = TabularCPD(f"{person_2}BT", 2, values=pair_blood_test,
-        #                                             evidence=[f'{person_1}BT', f'{person_2}BT'],
-        #                                             evidence_card=[2, 1],
-        #                                             state_names=pair_blood_type_test_states)
-
-        family_tree.add_cpds(TabularCPD(f"{person_1}BT", 2, values=pair_blood_test,
-                                                    evidence=[f'{person_1}BT', f'{person_2}BT'],
-                                                    evidence_card=[2, 1],
-                                                    state_names=pair_blood_type_test_states),
-                             TabularCPD(f"{person_2}BT", 2, values=pair_blood_test,
-                                        evidence=[f'{person_1}BT', f'{person_2}BT'],
-                                        evidence_card=[2, 1],
-                                        state_names=pair_blood_type_test_states)
+        family_tree.add_cpds(TabularCPD(variable=f'{item}_Result1', variable_card=4, values=pair_blood_test_1,
+                                        state_names={f'{item}_Result1': ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-2"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     },
+                                        evidence=[f'{d["test-results"][item]["person-1"]}BT',
+                                                  f'{d["test-results"][item]["person-2"]}BT'],
+                                        evidence_card=[4,4]
+                                        ),
+                             TabularCPD(variable=f'{item}_Result2', variable_card=4, values=pair_blood_test_1,
+                                        state_names={f'{item}_Result2': ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     f'{d["test-results"][item]["person-2"]}BT': ['A', 'B', 'AB', 'O'],
+                                                     },
+                                        evidence=[f'{d["test-results"][item]["person-1"]}BT',
+                                                  f'{d["test-results"][item]["person-2"]}BT'],
+                                        evidence_card=[4, 4]
+                                        ),
                              )
-
+        evidence.update({f'{item}_Result1': f'{d["test-results"][item]["result-1"]}'})
+        evidence.update({f'{item}_Result2': f'{d["test-results"][item]["result-2"]}'})
 
 family_tree.check_model()
 
@@ -187,37 +209,8 @@ plt.show()
 infer = VariableElimination(family_tree)
 
 # Set evidence
-
-
-mixed_blood_test = [
-    [.5, 0, .25, 0],
-    [0, .5, .25, 0],
-    [0, 0, .25, 0],
-    [.5, .5, .25, 1]
-]
-# mbt_virtual_evidence = TabularCPD(variable="MBT", variable_card=4, values=mixed_blood_test,
-#                                   state_names={'A', 'B', 'AB', 'O'})
-
-virtual_evidence = {}
-
-    # if f'{d["test-results"][item]["type"]}' == 'mixed-bloodtype-test':
-    #     virtual_evidence.append(
-    #         TabularCPD(variable=f'{d["test-results"][item]["person-1"]}', variable_card=4, values=mixed_blood_test,
-    #                    state_names={'A', 'B', 'AB', 'O'}))
-    # if f'{d["test-results"][item]["type"]}' == 'pair-bloodtype-test':
-    #     virtual_evidence.append(
-    #         TabularCPD(variable=f'{d["test-results"][item]["person-1"]}BT', variable_card=2, values=pair_blood_type_chart,
-    #                    state_names={f'{d["test-results"][item]["person-1"]}BT': [f'{d["test-results"][item]["result-1"]}', f'{d["test-results"][item]["result-2"]}']}))
-    #     virtual_evidence.append(
-    #         TabularCPD(variable=f'{d["test-results"][item]["person-2"]}BT', variable_card=2, values=pair_blood_type_chart,
-    #                state_names={f'{d["test-results"][item]["person-2"]}BT': [f'{d["test-results"][item]["result-1"]}', f'{d["test-results"][item]["result-2"]}']}))
-
-
-# Perform Inference for the results
+    # Perform Inference for the results
 for item in range(len(d["queries"])):
 
-
-    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence,
-                         virtual_evidence=virtual_evidence)
-
+    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence)
     print(result)
