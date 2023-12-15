@@ -8,7 +8,7 @@ import json
 
 family_tree = BayesianNetwork()
 
-with open('example-problems/problem-a-00.json') as f:
+with open('example-problems/problem-b-03.json') as f:
     d = json.load(f)
 
 # Conditional Probability Tables
@@ -16,9 +16,14 @@ north_wumponia = [[.40],
                   [.35],
                   [.25]]
 
-east_wumponia = [[.25],
-                 [.45],
-                 [.30]]
+south_wumponia = [[.25],
+                  [.45],
+                  [.30]]
+
+if d["country"] == 'North Wumponia':
+    country = north_wumponia
+elif d["country"] == 'South Wumponia':
+    country = south_wumponia
 
 subject_values = [[1, 0.5, 0.5, 0.5, 0, 0, 0.5, 0, 0],
                   [0, 0.5, 0, 0.5, 1, 0.5, 0, 0.5, 0],
@@ -28,6 +33,11 @@ blood_type_chart = [[1, 0, 1, 0, 0, 0, 1, 0, 0],
                     [0, 0, 0, 0, 1, 1, 0, 1, 0],
                     [0, 1, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 1]]
+
+pair_blood_type_chart = [[0.2, 0.8],
+                         [0.8, 0.2]]
+
+if d["test-results"]["type"] == "pair-bloodtype-test":
 
 state_names = {}
 family_list = {}
@@ -70,9 +80,11 @@ for x in d["family-tree"]:
         f'{objY}': ['A', 'B', 'O'],
         f'{objBT}': ['A', 'B', 'AB', 'O']
     })
+    if family_tree.get_cpds(f"{subX}") == None:
+        globals()[f"cpd_{subX}"] = TabularCPD(f"{subX}", 3, values=country, state_names=state_names)
+    if family_tree.get_cpds(f"{subY}") == None:
+        globals()[f"cpd_{subY}"] = TabularCPD(f"{subY}", 3, values=country, state_names=state_names)
 
-    globals()[f"cpd_{subX}"] = TabularCPD(f"{subX}", 3, values=north_wumponia, state_names=state_names)
-    globals()[f"cpd_{subY}"] = TabularCPD(f"{subY}", 3, values=north_wumponia, state_names=state_names)
     globals()[f"cpd_{subBT}"] = TabularCPD(f"{subBT}", 4, values=blood_type_chart, evidence=[f"{subX}", f"{subY}"],
                                            evidence_card=[3, 3], state_names=state_names)
     globals()[f"cpd_{objBT}"] = TabularCPD(f"{objBT}", 4, values=blood_type_chart, evidence=[f"{objX}", f"{objY}"],
@@ -82,29 +94,30 @@ for x in d["family-tree"]:
         globals()[f"cpd_{objX}"] = TabularCPD(f"{objX}", 3, values=subject_values, evidence=[f'{subX}', f'{subY}'],
                                               evidence_card=[3, 3], state_names=state_names)
         if family_tree.get_cpds(f"{objY}") == None:
-            print("empty")
-            globals()[f"cpd_{objY}"] = TabularCPD(f"{objY}", 3, values=north_wumponia, state_names=state_names)
+            print("emptyY")
+            globals()[f"cpd_{objY}"] = TabularCPD(f"{objY}", 3, values=country, state_names=state_names)
+            family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
+                                 globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
         else:
             family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
                                  globals()[f"cpd_{objX}"], globals()[f"cpd_{objBT}"])
-            break
+
 
     elif x["relation"] == "father-of":
         globals()[f"cpd_{objY}"] = TabularCPD(f"{objY}", 3, values=subject_values, evidence=[f'{subX}', f'{subY}'],
                                               evidence_card=[3, 3], state_names=state_names)
         if family_tree.get_cpds(f"{objX}") == None:
             print("emptyX")
-            globals()[f"cpd_{objX}"] = TabularCPD(f"{objX}", 3, values=north_wumponia, state_names=state_names)
+            globals()[f"cpd_{objX}"] = TabularCPD(f"{objX}", 3, values=country, state_names=state_names)
+            family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
+                                 globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
         else:
             family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
                                  globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
-            break
 
-    # cpd_KY = TabularCPD("KY", 3, values=subject_values, evidence=['IX', 'IY'], evidence_card=[3, 3],
-    #                     state_names=state_names)
 
-    family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
-                         globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
+    # family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
+    #                      globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
 # cpd_OX = TabularCPD("OX", 3, values=north_wumponia, state_names=state_names)
 # cpd_OY = TabularCPD("OY", 3, values=north_wumponia, state_names=state_names)
@@ -171,12 +184,12 @@ edges = family_tree.edges()
 G = nx.DiGraph()
 G.add_edges_from(edges)
 
-# Plot the Bayesian network structure
-plt.figure(figsize=(6, 6))
-pos = nx.spring_layout(G)  # Choose a layout for visualization
-nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_weight='bold', arrows=True)
-plt.title("Bayesian Network Structure")
-plt.show()
+# # Plot the Bayesian network structure
+# plt.figure(figsize=(6, 6))
+# pos = nx.spring_layout(G)  # Choose a layout for visualization
+# nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_weight='bold', arrows=True)
+# plt.title("Bayesian Network Structure")
+# plt.show()
 
 # # Display CPDs
 # cpds = family_tree.get_cpds()
@@ -200,7 +213,10 @@ print(d)
 for item in range(len(d["test-results"])):
     evidence = {f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'}
 
-# Perform Inference for KBT
-result = infer.query(variables=[f'{d["queries"][0]["person"]}BT'], evidence=evidence)
 
-print(result)
+# Perform Inference for KBT
+
+for item in range(len(d["queries"])):
+    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence)
+
+    print(result)
