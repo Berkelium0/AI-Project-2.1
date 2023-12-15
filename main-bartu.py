@@ -8,7 +8,7 @@ import json
 
 family_tree = BayesianNetwork()
 
-with open('example-problems/problem-b-03.json') as f:
+with open('example-problems/problem-d-04.json') as f:
     d = json.load(f)
 
 # Conditional Probability Tables
@@ -33,11 +33,6 @@ blood_type_chart = [[1, 0, 1, 0, 0, 0, 1, 0, 0],
                     [0, 0, 0, 0, 1, 1, 0, 1, 0],
                     [0, 1, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 1]]
-
-pair_blood_type_chart = [[0.2, 0.8],
-                         [0.8, 0.2]]
-
-if d["test-results"]["type"] == "pair-bloodtype-test":
 
 state_names = {}
 family_list = {}
@@ -115,65 +110,8 @@ for x in d["family-tree"]:
             family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
                                  globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
-
     # family_tree.add_cpds(globals()[f"cpd_{subX}"], globals()[f"cpd_{subY}"], globals()[f"cpd_{subBT}"],
     #                      globals()[f"cpd_{objX}"], globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
-
-# cpd_OX = TabularCPD("OX", 3, values=north_wumponia, state_names=state_names)
-# cpd_OY = TabularCPD("OY", 3, values=north_wumponia, state_names=state_names)
-# cpd_OBT = TabularCPD("OBT", 4, values=blood_type_chart, evidence=['OX', 'OY'], evidence_card=[3, 3],
-#                      state_names=state_names)
-# cpd_KX = TabularCPD("KX", 3, values=subject_values, evidence=['OX', 'OY'], evidence_card=[3, 3],
-#                     state_names=state_names)
-# cpd_KY = TabularCPD("KY", 3, values=subject_values, evidence=['IX', 'IY'], evidence_card=[3, 3],
-#                     state_names=state_names)
-# cpd_KBT = TabularCPD("KBT", 4, values=blood_type_chart, evidence=['KX', 'KY'], evidence_card=[3, 3],
-#                      state_names=state_names)
-# cpd_IX = TabularCPD("IX", 3, values=north_wumponia, state_names=state_names)
-# cpd_IY = TabularCPD("IY", 3, values=north_wumponia, state_names=state_names)
-# cpd_IBT = TabularCPD("IBT", 4, values=blood_type_chart, evidence=['IX', 'IY'], evidence_card=[3, 3],
-#                      state_names=state_names)
-
-# family_tree.add_cpds(cpd_OX, cpd_OY, cpd_OBT, cpd_KX, cpd_KY, cpd_KBT, cpd_IX, cpd_IY, cpd_IBT)
-
-# # Create Nodes
-# family_tree.add_node("OX")
-# family_tree.add_node("OY")
-# family_tree.add_node("OBT")
-# family_tree.add_node("KX")
-# family_tree.add_node("KY")
-# family_tree.add_node("KBT")
-# family_tree.add_node("IX")
-# family_tree.add_node("IY")
-# family_tree.add_node("IBT")
-
-# # Add the Edges
-# family_tree.add_edge("OX", "KX")
-# family_tree.add_edge("OX", "OBT")
-# family_tree.add_edge("OY", "KX")
-# family_tree.add_edge("OY", "OBT")
-#
-# family_tree.add_edge("IX", "KY")
-# family_tree.add_edge("IX", "IBT")
-# family_tree.add_edge("IY", "KY")
-# family_tree.add_edge("IY", "IBT")
-#
-# family_tree.add_edge("KX", "KBT")
-# family_tree.add_edge("KY", "KBT")
-
-
-# state_names = {
-#     'OX': ['A', 'B', 'O'],
-#     'OY': ['A', 'B', 'O'],
-#     'OBT': ['A', 'B', 'AB', 'O'],
-#     'KX': ['A', 'B', 'O'],
-#     'KY': ['A', 'B', 'O'],
-#     'KBT': ['A', 'B', 'AB', 'O'],
-#     'IX': ['A', 'B', 'O'],
-#     'IY': ['A', 'B', 'O'],
-#     'IBT': ['A', 'B', 'AB', 'O']
-# }
-
 
 family_tree.check_model()
 
@@ -184,20 +122,6 @@ edges = family_tree.edges()
 G = nx.DiGraph()
 G.add_edges_from(edges)
 
-# # Plot the Bayesian network structure
-# plt.figure(figsize=(6, 6))
-# pos = nx.spring_layout(G)  # Choose a layout for visualization
-# nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_weight='bold', arrows=True)
-# plt.title("Bayesian Network Structure")
-# plt.show()
-
-# # Display CPDs
-# cpds = family_tree.get_cpds()
-# for cpd in cpds:
-#     print("CPD for variable:", cpd.variable)
-#     print(cpd)
-#     print("\n")
-
 # Visualize Bayesian network structure
 plt.figure(figsize=(8, 6))
 pos = nx.spring_layout(G)  # Choose a layout for visualization
@@ -205,18 +129,43 @@ nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_wei
 plt.title("Bayesian Network Structure")
 plt.show()
 
-# Inference - Guessing KBT when OBT = A
+# Inference
 infer = VariableElimination(family_tree)
 
-# Set evidence OBT = A
-print(d)
+# Set evidence
+
+pair_blood_type_chart = [[0.8],
+                         [0.2]]
+
+mixed_blood_test = [
+    [.5, 0, .25, 0],
+    [0, .5, .25, 0],
+    [0, 0, .25, 0],
+    [.5, .5, .25, 1]
+]
+# mbt_virtual_evidence = TabularCPD(variable="MBT", variable_card=4, values=mixed_blood_test,
+#                                   state_names={'A', 'B', 'AB', 'O'})
+evidence = {}
+virtual_evidence = []
 for item in range(len(d["test-results"])):
-    evidence = {f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'}
+    if f'{d["test-results"][item]["type"]}' == 'bloodtype-test':
+        evidence.update({f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'})
+    # if f'{d["test-results"][item]["type"]}' == 'mixed-bloodtype-test':
+    #     virtual_evidence.append(
+    #         TabularCPD(variable=f'{d["test-results"][item]["person-1"]}', variable_card=4, values=mixed_blood_test,
+    #                    state_names={'A', 'B', 'AB', 'O'}))
+    if f'{d["test-results"][item]["type"]}' == 'pair-bloodtype-test':
+        virtual_evidence.append(
+            TabularCPD(variable=f'{d["test-results"][item]["person-1"]}BT', variable_card=2, values=pair_blood_type_chart,
+                       state_names={f'{d["test-results"][item]["person-1"]}BT': [f'{d["test-results"][item]["result-1"]}', f'{d["test-results"][item]["result-2"]}']}))
+        virtual_evidence.append(
+            TabularCPD(variable=f'{d["test-results"][item]["person-2"]}BT', variable_card=2, values=pair_blood_type_chart,
+                   state_names={f'{d["test-results"][item]["person-2"]}BT': [f'{d["test-results"][item]["result-1"]}', f'{d["test-results"][item]["result-2"]}']}))
 
 
-# Perform Inference for KBT
-
+# Perform Inference for the results
 for item in range(len(d["queries"])):
-    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence)
+    result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence,
+                         virtual_evidence=virtual_evidence)
 
     print(result)
