@@ -34,27 +34,13 @@ mixed_blood_test = [
 ]
 
 pair_blood_test_1 = [
-    [1, 0.8, 0.8, 0.8, 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0],
-    [0, 0.2, 0, 0, 0.8, 1, 0.8, 0.8, 0, 0.2, 0, 0, 0, 0.2, 0, 0],
-    [0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.8, 0.8, 1, 0.8, 0, 0, 0.2, 0],
-    [0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.8, 0.8, 0.8, 1]
-]
-
-pair_blood_test_2 = [
-    [1, 0.2, 0.2, 0.2, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0],
-    [0, 0.8, 0, 0, 0.2, 1, 0.2, 0.2, 0, 0.8, 0, 0, 0, 0.8, 0, 0],
-    [0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.2, 0.2, 1, 0.2, 0, 0, 0.8, 0],
-    [0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.2, 0.2, 0.2, 1]
-]
-
-pair_blood_test_3 = [
     [1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1]
 ]
 
-pair_blood_test_4 = [
+pair_blood_test_2 = [
     [1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
@@ -185,7 +171,7 @@ def guess_blood(d, json_name):
             family_tree.add_cpds(TabularCPD(variable=f'{item}PBT', variable_card=2, values=pair_blood_test_check,
                                             state_names={f'{item}PBT': ['work', 'fail']}
                                             ),
-                                 TabularCPD(variable=f'{item}_Result1', variable_card=4, values=pair_blood_test_3,
+                                 TabularCPD(variable=f'{item}_Result1', variable_card=4, values=pair_blood_test_1,
                                             state_names={f'{item}_Result1': ['A', 'B', 'AB', 'O'],
                                                          f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB',
                                                                                                       'O'],
@@ -198,7 +184,7 @@ def guess_blood(d, json_name):
                                                       f'{item}PBT'],
                                             evidence_card=[4, 4, 2]
                                             ),
-                                 TabularCPD(variable=f'{item}_Result2', variable_card=4, values=pair_blood_test_4,
+                                 TabularCPD(variable=f'{item}_Result2', variable_card=4, values=pair_blood_test_2,
                                             state_names={f'{item}_Result2': ['A', 'B', 'AB', 'O'],
                                                          f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB',
                                                                                                       'O'],
@@ -253,7 +239,8 @@ def guess_blood(d, json_name):
             }
         })
 
-    with open(f'solutions/{json_name.replace("problem", "solution")}', 'w') as f:
+    path_to_solutions = 'solutions'
+    with open(f'{path_to_solutions}/{json_name.replace("problem", "solution")}', 'w') as f:
         json.dump(data, f)
 
     node_list = list(family_tree.nodes())
@@ -266,7 +253,7 @@ path_to_json = 'problems'
 json_files = [pos_json for pos_json in os.listdir(path_to_json) if pos_json.endswith('.json')]
 
 for jsons in json_files:
-    with open(f'problems/{jsons}') as f:
+    with open(f'{path_to_json}/{jsons}') as f:
         print(jsons)
         d = json.load(f)
         guess_blood(d, jsons)
