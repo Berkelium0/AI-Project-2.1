@@ -35,4 +35,4 @@ depended on the father's alleles. In case they don't have both parents, they get
 allele probabilities for the missing parent. Then we added the state names and the values they can get. Since subX, subY, objX,
 objY are alleles, they can get A, B or 0 while subBT and objBT can get A, B, AB or 0. According to this logic, we added the nodes and edges.
 
-
+![img.png](img.png)
