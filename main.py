@@ -133,7 +133,7 @@ def guess_blood(d, json_name):
                                      globals()[f"cpd_{objY}"], globals()[f"cpd_{objBT}"])
 
     evidence = {}
-    mbt_virtual_evidence = []
+
     for item in range(len(d["test-results"])):
         if f'{d["test-results"][item]["type"]}' == 'bloodtype-test':
             evidence.update({f'{d["test-results"][item]["person"]}BT': f'{d["test-results"][item]["result"]}'})
@@ -156,10 +156,8 @@ def guess_blood(d, json_name):
         elif f'{d["test-results"][item]["type"]}' == 'pair-bloodtype-test':
 
             person_1 = d["test-results"][item]["person-1"]
-            result_1 = d["test-results"][item]["result-1"]
 
             person_2 = d["test-results"][item]["person-2"]
-            result_2 = d["test-results"][item]["result-2"]
 
             family_tree.add_edge(f'{person_1}BT', f'{item}_Result1')
             family_tree.add_edge(f'{person_1}BT', f'{item}_Result2')

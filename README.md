@@ -38,4 +38,28 @@ objY are alleles, they can get A, B or 0 while subBT and objBT can get A, B, AB 
 #### Example Network
 ![img.png](img.png)
 
+Then we created the conditional probability distribution tables. If subject alleles do not have their CPDs in the network already, we create them
+by taking country values. CPDs for subBT and objBT are created as well by taking blood_type_chart values and X and Y alleles as evidences.
+
+If the relation is mother-of, CPD for object's X allele is created by using subject_values and subX and subY as evidences. If the CPD for object's
+Y allele does not exist, we create it by using country values and add every CPD into our network. But, if the CPD for object's Y allele exists, we add
+every CPD except the objY into our network. That way, we don't overwrite the CPD for objY.
+
+If the relation is father-of, CPD for object's Y allele is created by using subject_values and subX and subY as evidences. If the CPD for object's
+X allele does not exist, we create it by using country values and add every CPD into our network. But, if the CPD for object's X allele exists, we add
+every CPD except the objY into our network. That way, we don't overwrite the CPD for objX.
+
+The test results were added as evidence in the end. We have 3 types of test results which are blood-type test, mixed blood-type test and pair blood-type test.
+Blood-type test gives us the correct blood-type for the tested person. We simply add the tested person's name and the result of the test to our evidences.
+
+Mixed blood-type test mixes the blood of 2 people and gives us a combined blood-type as result.
+
+Pair blood-type test takes blood samples of 2 people and tells the blood-type of each person individually. However, there's 20% chance they mix up the samples.
+For that reason, tested people's blood-types influences both of the results. So we added edges to both of them for each person's blood-type. We also added a new node
+called PBT for the pair blood-type test and added edges to both results from it. After that we created the CPD for PBT by using pair_blood_test_check as values and a new 
+PBT state which takes work or fail as values. Then CPDs for both results are created. Result1's CPD uses pair_blood_test_1 and Result2's CPD uses pair_blood_test_2. Finally, we add
+both of the CPDs for results into evidences.
+
+
+
 
