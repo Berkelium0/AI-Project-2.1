@@ -5,7 +5,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import json
 import os
-import pandas as pd
 
 family_tree = BayesianNetwork()
 
