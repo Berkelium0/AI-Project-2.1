@@ -1,1 +1,1 @@
-[{"type": "bloodtype", "person": "Omar", "distribution": {"O": 0.06315104166666667, "A": 0.3163541666666666, "B": 0.3380989583333333, "AB": 0.2823958333333333}}, {"type": "bloodtype", "person": "Leslie", "distribution": {"O": 0.06380208333333334, "A": 0.2727083333333334, "B": 0.3786979166666667, "AB": 0.2847916666666667}}]
+[{"type": "bloodtype", "person": "Omar", "distribution": {"O": 1.0, "A": 0.0, "B": 0.0, "AB": 0.0}}, {"type": "bloodtype", "person": "Leslie", "distribution": {"O": 0.25, "A": 0.4, "B": 0.35, "AB": 0.0}}]

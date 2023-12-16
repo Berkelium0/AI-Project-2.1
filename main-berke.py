@@ -33,6 +33,38 @@ mixed_blood_test = [
     [0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 ]
+
+pair_blood_test_1 = [
+    [1, 0.8, 0.8, 0.8, 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0],
+    [0, 0.2, 0, 0, 0.8, 1, 0.8, 0.8, 0, 0.2, 0, 0, 0, 0.2, 0, 0],
+    [0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.8, 0.8, 1, 0.8, 0, 0, 0.2, 0],
+    [0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.8, 0.8, 0.8, 1]
+]
+
+pair_blood_test_2 = [
+    [1, 0.2, 0.2, 0.2, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0],
+    [0, 0.8, 0, 0, 0.2, 1, 0.2, 0.2, 0, 0.8, 0, 0, 0, 0.8, 0, 0],
+    [0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.2, 0.2, 1, 0.2, 0, 0, 0.8, 0],
+    [0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.2, 0.2, 0.2, 1]
+]
+
+pair_blood_test_3 = [
+    [1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1]
+]
+
+pair_blood_test_4 = [
+    [1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1]
+]
+
+
+pair_blood_test_check = [[.8], [.2]]
+
 state_names = {}
 family_list = {}
 
@@ -136,6 +168,54 @@ def guess_blood(d, json_name):
                                  )
             evidence.update({f"MBT{item}": f'{d["test-results"][item]["result"]}'})
 
+        elif f'{d["test-results"][item]["type"]}' == 'pair-bloodtype-test':
+
+            person_1 = d["test-results"][item]["person-1"]
+            result_1 = d["test-results"][item]["result-1"]
+
+            person_2 = d["test-results"][item]["person-2"]
+            result_2 = d["test-results"][item]["result-2"]
+
+            family_tree.add_edge(f'{person_1}BT', f'{item}_Result1')
+            family_tree.add_edge(f'{person_1}BT', f'{item}_Result2')
+            family_tree.add_edge(f'{person_2}BT', f'{item}_Result1')
+            family_tree.add_edge(f'{person_2}BT', f'{item}_Result2')
+            family_tree.add_edge(f'{item}PBT', f'{item}_Result1')
+            family_tree.add_edge(f'{item}PBT', f'{item}_Result2')
+
+            family_tree.add_cpds(TabularCPD(variable=f'{item}PBT', variable_card=2, values=pair_blood_test_check,
+                                            state_names={f'{item}PBT': ['work', 'fail']}
+                                            ),
+                                 TabularCPD(variable=f'{item}_Result1', variable_card=4, values=pair_blood_test_3,
+                                            state_names={f'{item}_Result1': ['A', 'B', 'AB', 'O'],
+                                                         f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB',
+                                                                                                      'O'],
+                                                         f'{d["test-results"][item]["person-2"]}BT': ['A', 'B', 'AB',
+                                                                                                      'O'],
+                                                         f'{item}PBT': ['work', 'fail']
+                                                         },
+                                            evidence=[f'{d["test-results"][item]["person-1"]}BT',
+                                                      f'{d["test-results"][item]["person-2"]}BT',
+                                                      f'{item}PBT'],
+                                            evidence_card=[4, 4, 2]
+                                            ),
+                                 TabularCPD(variable=f'{item}_Result2', variable_card=4, values=pair_blood_test_4,
+                                            state_names={f'{item}_Result2': ['A', 'B', 'AB', 'O'],
+                                                         f'{d["test-results"][item]["person-1"]}BT': ['A', 'B', 'AB',
+                                                                                                      'O'],
+                                                         f'{d["test-results"][item]["person-2"]}BT': ['A', 'B', 'AB',
+                                                                                                      'O'],
+                                                         f'{item}PBT': ['work', 'fail']
+                                                         },
+                                            evidence=[f'{d["test-results"][item]["person-1"]}BT',
+                                                      f'{d["test-results"][item]["person-2"]}BT',
+                                                      f'{item}PBT'],
+                                            evidence_card=[4, 4, 2]
+                                            ),
+                                 )
+            evidence.update({f'{item}_Result1': f'{d["test-results"][item]["result-1"]}'})
+            evidence.update({f'{item}_Result2': f'{d["test-results"][item]["result-2"]}'})
+
     family_tree.check_model()
 
     # Extract the edges from the Bayesian Network
@@ -161,7 +241,7 @@ def guess_blood(d, json_name):
     data = []
     for item in range(len(d["queries"])):
         result = infer.query(variables=[f'{d["queries"][item]["person"]}BT'], evidence=evidence)
-        print(result, item)
+        print(result)
         result_arr = result.values.tolist()
         data.append({
             "type": "bloodtype",
@@ -178,7 +258,6 @@ def guess_blood(d, json_name):
         json.dump(data, f)
 
     node_list = list(family_tree.nodes())
-    print(list(node_list))
 
     for node in node_list:
         family_tree.remove_node(node)
@@ -186,9 +265,9 @@ def guess_blood(d, json_name):
 
 path_to_json = 'problems'
 json_files = [pos_json for pos_json in os.listdir(path_to_json) if pos_json.endswith('.json')]
-# print(json_files)
 
 for jsons in json_files:
     with open(f'problems/{jsons}') as f:
+        print(jsons)
         d = json.load(f)
         guess_blood(d, jsons)
