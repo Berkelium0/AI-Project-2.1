@@ -1,6 +1,6 @@
-# Repository for ws2324.2.1/team689
+# Repository for AI Project 2.1
 
-**Topic:** WS2324 Assignment 2.1: Compute Blood Types
+**Assignment:** [Compute Blood Types](https://kwarc.info/teaching/AISysProj/SS24/assignment-2.1.pdf)
 
 ### Libraries Used:
 
